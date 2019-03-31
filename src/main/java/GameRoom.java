@@ -8,11 +8,11 @@ public class GameRoom {
        // toysGenerator.setVisitorMoney(400);
 
         toysGenerator.createRoom(400);
-       // toysGenerator.showAllRoom();
+        //toysGenerator.showAllRoom();
         //toysGenerator.sortBySize(3);
         toysGenerator.sortByPrice();
-        for (int i = 0; i < 5; i++){
+        /*for (int i = 0; i < 5; i++){
             ///System.out.println(toysGenerator.generateToyNames());
-        }
+        }*/
     }
 }

@@ -109,19 +109,16 @@ public class ToysGenerator {
     }
 
     public void sortByPrice(){
-        Map mapp = new HashMap();
 
-        for(int p = 0; p < finRoom.size(); p++) {
+        Collections.sort(finRoom, (Comparator<ToyItem>) (o1, o2) -> o2.getPrice() - o1.getPrice());
+        for(int p = finRoom.size() - 1; p >= 0; p--)
+        {
             ToyItem toyItem = (ToyItem) finRoom.get(p);
-            mapp.put(toyItem.getToyName(), toyItem.getPrice());
-        }
-        Map sortedMap = sortByValue(mapp);
-        System.out.println(sortedMap);
-    }
 
-    public static Map sortByValue(Map unsortedMap) {
-        Map sortedMap = new TreeMap(new ValueComparator(unsortedMap));
-        sortedMap.putAll(unsortedMap);
-        return sortedMap;
+                System.out.print(toyItem.getToyName() + " : ");
+                System.out.print(toyItem.getToySize() + " : ");
+                System.out.print(toyItem.getPrice() + " poins" +"\n");
+                System.out.println("----------------------------");
+            }
     }
 }
