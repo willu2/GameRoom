@@ -107,10 +107,17 @@ public class ToysGenerator {
         }
         return type;
     }
-        public void SortByPrice(Map map){
-            Map sortedMap = sortByValue(map);
-		    System.out.println(sortedMap);
-}
+
+    public void sortByPrice(){
+        Map mapp = new HashMap();
+
+        for(int p = 0; p < finRoom.size(); p++) {
+            ToyItem toyItem = (ToyItem) finRoom.get(p);
+            mapp.put(toyItem.getToyName(), toyItem.getPrice());
+        }
+        Map sortedMap = sortByValue(mapp);
+        System.out.println(sortedMap);
+    }
 
     public static Map sortByValue(Map unsortedMap) {
         Map sortedMap = new TreeMap(new ValueComparator(unsortedMap));

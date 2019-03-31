@@ -9,9 +9,8 @@ public class GameRoom {
 
         toysGenerator.createRoom(400);
        // toysGenerator.showAllRoom();
-        toysGenerator.sortBySize(1);
-        toysGenerator.sortBySize(2);
-        toysGenerator.sortBySize(3);
+        //toysGenerator.sortBySize(3);
+        toysGenerator.sortByPrice();
         for (int i = 0; i < 5; i++){
             ///System.out.println(toysGenerator.generateToyNames());
         }
