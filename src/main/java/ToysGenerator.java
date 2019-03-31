@@ -1,16 +1,13 @@
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class ToysGenerator {
 
     LinkedList finRoom = new LinkedList();
 
     ToyItem toyItem;
-    String[] toysNames = {"Cube", "Piramid", "Car", "Track", "Doll", "Rocket", "LaserGun", "Lego", "Puzzles", "Pads"};
+    private String[] toysNames = {"Cube", "Piramid", "Car", "Track", "Doll", "Rocket", "LaserGun", "Lego", "Puzzles", "Pads"};
 
-    Map<String, Integer> tempPrice = new HashMap<>();
+    private Map<String, Integer> tempPrice = new HashMap<>();
 
     int visitorMoney = 360;
 
@@ -49,16 +46,19 @@ public class ToysGenerator {
         return tempPrice;
     }
 
-    public void createRoom(int cash){
+    public void createRoom(int visitorMoney){
         createTempBase();
 
-        for (int i = 0; i<=50; i++){
+        while (visitorMoney > 0){
             toyItem = new ToyItem();
             toyItem.setToyName(generateToyNames());
             toyItem.setToySize(ToyItem.ToySize.getRandomSize());
             toyItem.setPrice(tempPrice.get(toyItem.getToyName()));
 
             finRoom.add(toyItem);
+
+            visitorMoney -= toyItem.getPrice();
+            //System.out.println(visitorMoney);
         }
     }
     public void showAllRoom(){
@@ -74,5 +74,47 @@ public class ToysGenerator {
         }else {
             System.out.println("Your room is empty");
         }
+    }
+
+    public void sortBySize(int size){
+        ToyItem.ToySize type = returnSize(size);
+
+            for(int p = 0; p < finRoom.size(); p++)
+            {
+                ToyItem toyItem = (ToyItem) finRoom.get(p);
+                if(toyItem.getToySize() == type) {
+                    System.out.print(toyItem.getToyName() + " : ");
+                    System.out.print(toyItem.getToySize() + " : ");
+                    System.out.print(toyItem.getPrice() + " poins" +"\n");
+                    System.out.println("----------------------------");
+                }
+
+            }
+        }
+
+    public ToyItem.ToySize returnSize(int size) {
+        ToyItem.ToySize type = ToyItem.ToySize.SMALL;
+        switch (size) {
+            case 1:
+                type = ToyItem.ToySize.SMALL;
+                break;
+            case 2:
+                type = ToyItem.ToySize.MID;
+                break;
+            case 3:
+                type = ToyItem.ToySize.LARGE;
+                break;
+        }
+        return type;
+    }
+        public void SortByPrice(Map map){
+            Map sortedMap = sortByValue(map);
+		    System.out.println(sortedMap);
+}
+
+    public static Map sortByValue(Map unsortedMap) {
+        Map sortedMap = new TreeMap(new ValueComparator(unsortedMap));
+        sortedMap.putAll(unsortedMap);
+        return sortedMap;
     }
 }
