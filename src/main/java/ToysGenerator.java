@@ -9,13 +9,13 @@ public class ToysGenerator {
 
     private Map<String, Integer> tempPrice = new HashMap<>();
 
-    int visitorMoney = 360;
+    int visitorMoney2 = 360;
 
     public ToysGenerator() {
     }
 
     public void setVisitorMoney(int maxPrice) {
-        this.visitorMoney = maxPrice;
+        this.visitorMoney2 = maxPrice;
     }
 
     public String generateToyNames(){
@@ -27,7 +27,7 @@ public class ToysGenerator {
 
     public int generatePrice(){
         Random ran = new Random();
-        int price = ran.nextInt(28) + 4;
+        int price = ran.nextInt(15) + 4;
 
         return price;
     }
@@ -36,10 +36,6 @@ public class ToysGenerator {
         for (int i = 0; i < toysNames.length; i++){
             tempPrice.put(toysNames[i], generatePrice());
         }
-
-        /*for (Map.Entry<String, Integer> entry : tempPrice.entrySet()) {
-            System.out.println("Item : " + entry.getKey() + " Count : " + entry.getValue());
-        }*/
     }
 
     public Map<String, Integer> getTempPrice() {
@@ -61,14 +57,14 @@ public class ToysGenerator {
             //System.out.println(visitorMoney);
         }
     }
-    public void showAllRoom(){
+    public void showAllToys(){
         if(!finRoom.isEmpty()){
             for(int p = 0; p < finRoom.size(); p++)
             {
                 ToyItem toyItem = (ToyItem) finRoom.get(p);
                 System.out.print(toyItem.getToyName() + " : ");
                 System.out.print(toyItem.getToySize() + " : ");
-                System.out.print(toyItem.getPrice() + " poins" +"\n");
+                System.out.print(toyItem.getPrice() + " coins" +"\n");
                 System.out.println("----------------------------");
             }
         }else {
@@ -83,6 +79,22 @@ public class ToysGenerator {
             {
                 ToyItem toyItem = (ToyItem) finRoom.get(p);
                 if(toyItem.getToySize() == type) {
+                    System.out.print(toyItem.getToyName() + " : ");
+                    System.out.print(toyItem.getToySize() + " : ");
+                    System.out.print(toyItem.getPrice() + " poins" +"\n");
+                    System.out.println("----------------------------");
+                }
+
+            }
+        }
+
+        public void findBySize(int size, int price){
+        ToyItem.ToySize type = returnSize(size);
+
+            for(int p = 0; p < finRoom.size(); p++)
+            {
+                ToyItem toyItem = (ToyItem) finRoom.get(p);
+                if(toyItem.getToySize() == type && toyItem.getPrice()== price) {
                     System.out.print(toyItem.getToyName() + " : ");
                     System.out.print(toyItem.getToySize() + " : ");
                     System.out.print(toyItem.getPrice() + " poins" +"\n");
