@@ -1,47 +1,41 @@
 import java.util.*;
 
+/* Generate  all data class*/
 public class ToysGenerator {
 
-    LinkedList finRoom = new LinkedList();
+    private LinkedList finRoom = new LinkedList();
 
-    ToyItem toyItem;
+    private ToyItem toyItem;
     private String[] toysNames = {"Cube", "Piramid", "Car", "Track", "Doll", "Rocket", "LaserGun", "Lego", "Puzzles", "Pads"};
 
     private Map<String, Integer> tempPrice = new HashMap<>();
 
-    int visitorMoney2 = 360;
-
     public ToysGenerator() {
     }
 
-    public void setVisitorMoney(int maxPrice) {
-        this.visitorMoney2 = maxPrice;
-    }
-
-    public String generateToyNames(){
+    //toy name random generator
+    private String generateToyNames(){
         Random ran = new Random();
         int item = ran.nextInt(toysNames.length);
 
         return toysNames[item];
     }
 
-    public int generatePrice(){
+    //toy price random generator
+    private int generatePrice(){
         Random ran = new Random();
         int price = ran.nextInt(15) + 4;
 
         return price;
     }
 
-    public void createTempBase(){
+    private void createTempBase(){
         for (int i = 0; i < toysNames.length; i++){
             tempPrice.put(toysNames[i], generatePrice());
         }
     }
 
-    public Map<String, Integer> getTempPrice() {
-        return tempPrice;
-    }
-
+    //add all data data to room array
     public void createRoom(int visitorMoney){
         createTempBase();
 
@@ -54,9 +48,10 @@ public class ToysGenerator {
             finRoom.add(toyItem);
 
             visitorMoney -= toyItem.getPrice();
-            //System.out.println(visitorMoney);
         }
     }
+
+    //print add data from room
     public void showAllToys(){
         if(!finRoom.isEmpty()){
             for(int p = 0; p < finRoom.size(); p++)
@@ -72,6 +67,7 @@ public class ToysGenerator {
         }
     }
 
+    //sort toys by size
     public void sortBySize(int size){
         ToyItem.ToySize type = returnSize(size);
 
@@ -88,22 +84,24 @@ public class ToysGenerator {
             }
         }
 
-        public void findBySize(int size, int price){
+    //find toy by size
+    public void findBySize(int size, int price){
         ToyItem.ToySize type = returnSize(size);
 
-            for(int p = 0; p < finRoom.size(); p++)
-            {
-                ToyItem toyItem = (ToyItem) finRoom.get(p);
-                if(toyItem.getToySize() == type && toyItem.getPrice()== price) {
-                    System.out.print(toyItem.getToyName() + " : ");
-                    System.out.print(toyItem.getToySize() + " : ");
-                    System.out.print(toyItem.getPrice() + " poins" +"\n");
-                    System.out.println("----------------------------");
-                }
-
+        for(int p = 0; p < finRoom.size(); p++)
+        {
+            ToyItem toyItem = (ToyItem) finRoom.get(p);
+            if(toyItem.getToySize() == type && toyItem.getPrice()== price) {
+                System.out.print(toyItem.getToyName() + " : ");
+                System.out.print(toyItem.getToySize() + " : ");
+                System.out.print(toyItem.getPrice() + " poins" +"\n");
+                System.out.println("----------------------------");
             }
-        }
 
+        }
+    }
+
+    //get toy size by toy size number
     public ToyItem.ToySize returnSize(int size) {
         ToyItem.ToySize type = ToyItem.ToySize.SMALL;
         switch (size) {
@@ -120,6 +118,7 @@ public class ToysGenerator {
         return type;
     }
 
+    //sort toys by price
     public void sortByPrice(){
 
         Collections.sort(finRoom, (Comparator<ToyItem>) (o1, o2) -> o2.getPrice() - o1.getPrice());

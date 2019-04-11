@@ -12,36 +12,38 @@ public class GameRoom {
         int visitorPrice = 0;
 
         visitorPrice = menu.menuTotalPriceEnter();
-        toysGenerator.createRoom(visitorPrice);
+        toysGenerator.createRoom(visitorPrice);  // create game room by price
+
         boolean exit = false;
 
         do {
             int pos = 0;
             int price = 0;
 
-            menu.mainManu();
+            menu.mainManu(); //main text menu
 
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
+            //main menu block
             try {
-                switch (pos = Integer.parseInt(in.readLine())) {
+                switch (Integer.parseInt(in.readLine())) {
                     case 1:
-                        toysGenerator.showAllToys();
+                        toysGenerator.showAllToys();   //show all stuffs in the room
                         break;
                     case 2:
                         menu.sizeShow();
                         pos = Integer.parseInt(in.readLine());
-                        toysGenerator.sortBySize(pos);
+                        toysGenerator.sortBySize(pos);  //sort by toys size
                         break;
                     case 3:
-                        toysGenerator.sortByPrice();
+                        toysGenerator.sortByPrice();  //sort by toys price
                         break;
                     case 4:
                         menu.sizeShow();
                         pos = Integer.parseInt(in.readLine());
                         menu.priceEnter();
                         price = Integer.parseInt(in.readLine());
-                        toysGenerator.findBySize(pos, price);
+                        toysGenerator.findBySize(pos, price);  //find toys by position and price
                         break;
                     case 8:
                         exit = true;

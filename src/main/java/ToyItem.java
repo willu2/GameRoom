@@ -2,6 +2,7 @@ import java.util.Random;
 
 public class ToyItem {
 
+   //types of toys
    public enum ToySize{
         SMALL, MID, LARGE;
 
@@ -11,8 +12,9 @@ public class ToyItem {
        }
     }
 
-    private String toyName;
-    private int price = 0;
+    private String toyName;  //toy name
+    private int price = 0;   //toy price
+    private ToySize toySize; //toy size
 
     public ToyItem() {
     }
@@ -23,12 +25,11 @@ public class ToyItem {
         this.toySize = size;
     }
 
-    private ToySize toySize;
-
     public int getPrice() {
         return price;
-    }
+    } //get toy price
 
+    //set automatic toys price
     public void setPrice(int price) {
         if(toySize == ToySize.MID){
             this.price = price * 2;
